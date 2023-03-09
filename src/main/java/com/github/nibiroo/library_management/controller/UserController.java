@@ -28,4 +28,23 @@ public class UserController {
 
         return optionalUser.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @PutMapping(value = "/edit/{id}",  consumes = {"application/json", "application/xml"})
+    public ResponseEntity<User> updateUserById(@PathVariable(value = "id") Long idParam, @RequestBody User userRequestBody) {
+
+        Optional<User> optionalUser = userRepository.findById(idParam);
+
+        if (optionalUser.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        User existingUser = optionalUser.get();
+        existingUser.setName(userRequestBody.getName());
+        existingUser.setEmail(userRequestBody.getEmail());
+        existingUser.setPhoneNumber(userRequestBody.getPhoneNumber());
+
+        userRepository.save(existingUser);
+
+        return ResponseEntity.ok(existingUser);
+    }
 }
