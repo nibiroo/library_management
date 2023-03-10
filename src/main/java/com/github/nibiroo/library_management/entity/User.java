@@ -2,13 +2,15 @@ package com.github.nibiroo.library_management.entity;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "tb_user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private UUID id;
 
     @Column(name = "name")
     private String name;
@@ -32,6 +34,9 @@ public class User {
         this.CPF = CPF;
     }
 
+    public UUID getId() {
+        return id;
+    }
     public String getName() {
         return name;
     }
