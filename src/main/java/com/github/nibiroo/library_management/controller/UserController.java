@@ -29,7 +29,7 @@ public class UserController {
         return optionalUser.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PutMapping(value = "/edit/{id}",  consumes = {"application/json"})
+    @PutMapping(value = "/edit/{id}",  consumes = {"application/json", "application/xml"})
     public ResponseEntity<User> updateUserById(@PathVariable(value = "id") Long idParam, @RequestBody User userRequestBody) {
 
         Optional<User> optionalUser = userRepository.findById(idParam);
@@ -46,10 +46,5 @@ public class UserController {
         userRepository.save(existingUser);
 
         return ResponseEntity.ok(existingUser);
-    }
-
-    @PostMapping("/create")
-    public User postUser(@RequestBody User userRequestBody){
-        return userRepository.save(userRequestBody);
     }
 }
