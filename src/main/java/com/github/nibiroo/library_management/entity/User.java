@@ -10,7 +10,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private int id;
 
     @Column(name = "name")
     private String name;
@@ -34,7 +34,7 @@ public class User {
         this.CPF = CPF;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
     public String getName() {

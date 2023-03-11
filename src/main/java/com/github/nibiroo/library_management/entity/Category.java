@@ -10,7 +10,7 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private int id;
 
     @Column(name = "name")
     private String name;
@@ -21,7 +21,7 @@ public class Category {
         this.name = name;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
     public String getName() {
